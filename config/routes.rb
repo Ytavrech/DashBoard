@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   namespace :admin do
       resources :roles
       resources :jobs
@@ -22,4 +23,7 @@ devise_for :users
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+
+
 end
