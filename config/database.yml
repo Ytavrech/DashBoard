@@ -10,7 +10,7 @@ development:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  username: ysh123
+  username: yash12345
   password: 12345
   host: localhost
   database: Dashboard_development

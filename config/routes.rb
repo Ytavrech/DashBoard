@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-devise_for :users do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+  namespace :admin do
+      resources :roles
+      resources :jobs
+      resources :users
+
+      root to: "roles#index"
+    end
+devise_for :users  
+# devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
   # get 'welcome/index'
   # match ‘/send_mail’, to: 'welcome#send_mail', via: “get”
+  # devise_for :users, controllers: { sessions: 'users/sessions' }
 
 
   resources :jobs

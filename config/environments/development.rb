@@ -72,6 +72,7 @@ Rails.application.configure do
 #  SENDMAIL_USERNAME='ytavrech@bestpeers.com'
 #  MAIL_HOST='localhost:3000'
 
+config.action_mailer.delivery_method = :letter_opener
 
 config.action_mailer.perform_deliveries = true
 config.action_mailer.default_url_options = { host:'localhost:3000'}
