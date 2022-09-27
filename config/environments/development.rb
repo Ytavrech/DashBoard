@@ -72,12 +72,14 @@ Rails.application.configure do
 #  SENDMAIL_USERNAME='ytavrech@bestpeers.com'
 #  MAIL_HOST='localhost:3000'
 config.action_mailer.delivery_method = :letter_opener_web
+config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+
 config.action_mailer.perform_deliveries = true
 config.action_mailer.default_url_options = { host:'localhost:3000'}
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-  address:       '127.0.0.1:3000',
-  port:          '1025'
-}
+# config.action_mailer.delivery_method = :smtp
+# config.action_mailer.smtp_settings = {
+#   address:       '127.0.0.1:3000',
+#   port:          '1025'
+# }
 config.action_mailer.raise_delivery_errors = false
 end
