@@ -9,7 +9,7 @@ end
 
       root to: "roles#index"
     end
-devise_for :users  
+devise_for :users#, class_name: 'Blast::User', module: :devise
 # devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
   # get 'welcome/index'
@@ -17,7 +17,10 @@ devise_for :users
   # devise_for :users, controllers: { sessions: 'users/sessions' }
 
 
-  resources :jobs
+  resources :jobs do
+    patch :accept
+    patch :decline
+  end
   root 'welcome#index'
   # resources jobs
 
