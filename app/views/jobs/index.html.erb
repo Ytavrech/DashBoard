@@ -2,11 +2,11 @@
 <h1>Jobs</h1>
 <% @jobs.each do |job| %>
   <div class="job">
-    <h2><%= link_to job.title, job.url %></h2>
+    <h3><%= link_to job.title, job.url %></h3>
+    <h3><%= job.company %></h3>
     <p><%= button_to "Accept", job_accept_path(job), method: :patch %></p>
     <%= button_to "Reject", job_decline_path(job), method: :patch %> 
-
-    <p><%= job.company %></p>
+ <%= link_to "Edit", edit_job_path(job)%>
   </div>
 <% end %>
 

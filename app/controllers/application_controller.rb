@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     # before_action :authenticate_user!
     def after_sign_in_path_for(current_user)
         # if resource.class == Admin
-            admin_root_path 
+        jobs_path
         # elsif resource.class == User
             # new_user_session_path
         # end

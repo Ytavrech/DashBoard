@@ -20,6 +20,16 @@ class JobsController < ApplicationController
     end
   end
 
+  def edit
+    @job = Job.find(params[:id])
+  end
+
+  def update
+    @job = Job.find(params[:id])
+    @job.update(title: params[:job][:title], company: params[:job][:company], url: params[:job][:url])
+    redirect_to job_path(@job)
+  end
+
   def accept
     # debugger
     if @job.accepted!
@@ -32,13 +42,14 @@ class JobsController < ApplicationController
   def decline
     # debugger
     if @job.rejected!
-      redirect_to @job, notice: 'Offer rejected'
+      redirect_to @job, notice: "Offer rejected"
     else
-      redirect_to @job, notice: 'Offer could not be rejected - please try again' 
+      redirect_to @job, notice: "Offer could not be rejected - please try again"
     end
   end
 
   private
+
   def find_job
     @job = Job.find(params[:job_id])
   end

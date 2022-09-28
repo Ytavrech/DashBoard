@@ -21,6 +21,8 @@ devise_for :users#, class_name: 'Blast::User', module: :devise
     patch :accept
     patch :decline
   end
+
+  resources :applicants
   root 'welcome#index'
   # resources jobs
 

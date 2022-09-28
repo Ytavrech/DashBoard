@@ -1,0 +1,9 @@
+<h1>Add Your Contact Information</h1>
+<% @applicants.each do |applicant| %>
+  <div class="applicant">
+    <h4><%= applicant.name %></h4>
+     <h4><%= applicant.lastname %></h4>
+     <h4><%= applicant.city %></h4>
+     <h4><%= applicant.phone %></h4>
+  </div>
+<% end %>
