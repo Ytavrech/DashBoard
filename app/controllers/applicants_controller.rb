@@ -1,6 +1,8 @@
 class ApplicantsController < ApplicationController
   def index
-    @applicants = Applicant.all
+    @jobs = Job.all  
+    @applicant = Applicant.all
+    # render :controller => 'jobs', :action => 'index'
   end
 
   def new

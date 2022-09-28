@@ -3,7 +3,8 @@ class JobsController < ApplicationController
   before_action :find_job, only: %i{ accept decline }
 
   def index
-    @jobs = Job.all
+    @jobs = Job.all  
+    @Applicants = Applicant.all
   end
 
   def new
