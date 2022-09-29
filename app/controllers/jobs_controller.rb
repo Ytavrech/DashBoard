@@ -4,7 +4,7 @@ class JobsController < ApplicationController
 
   def index
     @jobs = Job.all  
-    @Applicants = Applicant.all
+    # @Applicants = Applicant.all
   end
 
   def new
@@ -13,7 +13,6 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(params.require(:job).permit(:title, :company, :url))
-
     if @job.save
       redirect_to root_path
     else

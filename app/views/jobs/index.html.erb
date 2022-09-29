@@ -1,19 +1,20 @@
 
-<h1>CANDIDATE LIST</h1>
-<% @Applicants.each do |applicant| %>
+<h1>Jobs</h1>
+<% @jobs.each do |job| %>
   <div class="job">   
-    <h3><%#= job.company %></h3>
-    <h3><%= link_to applicant.name, applicant.lastname %></h3>
-    <%# <h3><%= applicant.lastname %>
-    <h3><%= applicant.city %></h3>
-    <h3><%= applicant.phone %></h3>
-    
-    
-    <p><%= button_to "Accept", job_accept_path(applicant), method: :patch %></p>
-    <%= button_to "Reject", job_decline_path(applicant), method: :patch %> 
- <%= link_to "Edit", edit_job_path(applicant)%>
+    <h3><%= link_to job.title, job.url %></h3>
+     <h3><%= job.company %></h3>
+<%= link_to "Apply", new_applicant_path(job)%>
+
+
+<%if current_user.roles == "Applicant" || current_user.roles == "job"%>
+    <p><%= button_to "Accept", job_accept_path(job), method: :patch %></p>
+    <%= button_to "Reject", job_decline_path(job), method: :patch %> 
+    <%= link_to "Edit", edit_job_path(job)%>
+<% end %>
   </div>
 <% end %>
-
+<%if current_user.roles == "Applicant"%>
+<p><%= link_to "Add a job", new_job_path %></p>
+<% end%>
 <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-<%# <p><%= link_to "Add a job", new_job_path %></p>

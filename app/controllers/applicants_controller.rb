@@ -1,7 +1,6 @@
 class ApplicantsController < ApplicationController
   def index
-    @jobs = Job.all  
-    @applicant = Applicant.all
+    @applicants = Applicant.all  
     # render :controller => 'jobs', :action => 'index'
   end
 
@@ -9,10 +8,13 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.new
   end
 
-  def create
-    @applicant = Applicant.new(params.require(:applicant).permit(:name, :lastname, :city ,:phone))
+  def create 
+    @Applicant = Applicant.find(params[:applicant_id])    
+    @job = @applicant.jobs.create(params[:job]) 
 
-    if @applicant.save
+    # @applicant = Applicant.new(params.require(:applicant).permit(:name, :lastname, :city ,:phone))
+
+    if @job.save
       redirect_to root_path
     else
       render "new"

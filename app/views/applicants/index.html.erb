@@ -1,11 +1,14 @@
 <h1>Jobs</h1>
-<% @jobs.@applicant.each do |job| %>
-  <div class="job">
+<% @applicants.each do |applicant| %>
+  <div class="applicant">
+    <h3><%#= job.company %></h3>
+    <h3><%= link_to applicant.name, applicant.lastname %></h3>
+    <%# <h3><%= applicant.lastname %>
+ 
+    <h3><%= applicant.city %></h3>
+    <h3><%= applicant.phone %></h3>
 
-    <h3><%= job.title %></h3>
-     <h3><%= job.url %></h3>
-     <h3><%= job.company %></h3>
- <%= link_to "Apply", new_applicant_path(job)%>
+   
   </div>
 <% end %>
 
