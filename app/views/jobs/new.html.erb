@@ -22,11 +22,24 @@
     <%= form.text_field :url %>
     <% @job.errors.full_messages_for(:url).each do |message| %>
     <% end %>
-  </div><br><br>
-
+  </div>
 
 
   <div>
+    <%= form.label :experience %><br>
+    <%= form.text_field :experience %>
+    <% @job.errors.full_messages_for(:experience).each do |message| %>
+    <% end %>
+  </div>
+
+    <div>
+    <%= form.label :salary %><br>
+    <%= form.text_field :salary %>
+    <% @job.errors.full_messages_for(:salary).each do |message| %>
+    <% end %>
+  </div><br><br>
+  <div>
+
     <%= form.submit %>
   </div>
 
