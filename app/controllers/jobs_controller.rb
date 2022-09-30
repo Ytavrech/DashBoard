@@ -1,12 +1,16 @@
 class JobsController < ApplicationController
   # before_action :authenticate_user!
   before_action :find_job, only: %i{ accept decline }
-
+  
   def index
     @jobs = Job.all  
     # @Applicants = Applicant.all
   end
-
+  
+  def show
+    @job = Job.find(params[:id])
+  end
+  
   def new
     @job = Job.new
   end
@@ -14,7 +18,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(params.require(:job).permit(:title, :company, :url))
     if @job.save
-      redirect_to root_path
+      redirect_to jobs_path
     else
       render "new"
     end
@@ -48,9 +52,6 @@ class JobsController < ApplicationController
     end
   end
 
-  def show
-    @job = Job.find(params[:id])
-  end
   private
 
   def find_job

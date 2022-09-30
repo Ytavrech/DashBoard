@@ -1,7 +1,33 @@
 
-<%= simple_form_for @job do |form| %>
-  <%= form.input :title, label: "Job title" %>
-  <%= form.input :company, label: "Your company" %>
-  <%= form.input :url, label: "Link to job" %>
-  <%= form.button :submit %>
+<h1>create new job</h1>
+
+
+<%= form_with model: @job do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% @job.errors.full_messages_for(:title).each do |message| %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :company %><br>
+    <%= form.text_field :company %>
+    <% @job.errors.full_messages_for(:company).each do |message| %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :url %><br>
+    <%= form.text_field :url %>
+    <% @job.errors.full_messages_for(:url).each do |message| %>
+    <% end %>
+  </div><br><br>
+
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+
 <% end %>

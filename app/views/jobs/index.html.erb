@@ -1,27 +1,26 @@
-<h1>Jobs</h1> 
- 
 
-<% @jobs.each do |job| %>
  
-  <h3><%= link_to job.title, job.url %></h3>
-  <h3><%= job.company %></h3>
-    <%if current_user.role == "applicant"%>
-      <%= link_to "Apply", new_applicant_path(job)%>
-    <%else%>
-      <p><%= button_to "Accept", job_accept_path(job), method: :patch %></p>
-      <p><%= button_to "Reject", job_decline_path(job), method: :patch %> </p>
-      <p><%= link_to "Edit", edit_job_path(job)%></p>
-    <% end %>
-
-  <%end%>
-<%if current_user.role == "applicant" %>
-<p><%= link_to "Add a job", new_applicant_path %></p>
-<%end%>
-  
+<%# employer %>
+<% if current_user.employer? %>
+  <h1>Welcome Employer</h1>
+  <%= link_to "create a job", new_job_path %> <br><br>
+  <%= link_to "see jobs posted by you job" %><br><br>
+  <%= link_to "applicant who apllied job post by you" %><br><br>
 <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
-   <!--<p><%= link_to "Create The Job", new_job_path %></p>
-  <p><%= link_to "Job Posted By You" %></p>
-  <p><%= link_to "applicant who apllied job post by you" %></p>
   
-  <%# link_to job.title, job%>
-  -->
+<%# applicant %>
+<% else current_user.applicant? %>
+  <h1>Welcome applicant</h1>
+  <h3>check job post</h3>
+<ul>
+  <% @jobs.each do |job| %>
+    <li>
+      <%= link_to job.title, job %>
+    </li>
+  <% end %>
+</ul>
+  <br>
+  <h3><%= link_to "see job applied by u" %></h3>
+<p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
+
+<% end%>

@@ -2,13 +2,13 @@ Rails.application.routes.draw do
 if Rails.env.development?
 mount LetterOpenerWeb::Engine, at: "/letter_opener"
 end
-  namespace :admin do
-      resources :roles
-      resources :jobs
-      resources :users
+  # namespace :admin do
+  #     resources :roles
+  #     resources :jobs
+  #     resources :users
 
-      root to: "roles#index"
-    end
+  #     root to: "roles#index"
+  #   end
 devise_for :users#, class_name: 'Blast::User', module: :devise
 # devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
