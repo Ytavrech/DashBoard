@@ -18,14 +18,6 @@
   </div>
 
   <div>
-    <%= form.label :url %><br>
-    <%= form.text_field :url %>
-    <% @job.errors.full_messages_for(:url).each do |message| %>
-    <% end %>
-  </div>
-
-
-  <div>
     <%= form.label :experience %><br>
     <%= form.text_field :experience %>
     <% @job.errors.full_messages_for(:experience).each do |message| %>

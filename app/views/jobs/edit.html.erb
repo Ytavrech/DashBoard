@@ -1,7 +1,9 @@
 <%= simple_form_for @job do |form| %>
   <%= form.input :title, label: "Job title" %>
   <%= form.input :company, label: "Your company" %>
-  <%= form.input :url, label: "Link to job" %>
+  <%= form.input :experience, label: "experience" %>
+  <%= form.input :salary, label: "Your company" %>
+
   <%= form.button :submit %>
 <%= link_to "Show Jobs", jobs_path(@job)%> 
 <% end %>
