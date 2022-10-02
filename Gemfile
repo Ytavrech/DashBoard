@@ -10,7 +10,7 @@ gem 'devise'
 gem "rolify"
   gem 'administrate'
 # gem 'omniauth-dig
-
+gem 'pry'
 gem 'devise-two-factor'
 # gem "letter_opener", :group => :development
 group :development do

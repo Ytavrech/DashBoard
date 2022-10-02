@@ -1,0 +1,10 @@
+ 
+ <% if current_user.employer? %>
+ <%= link_to "create a job", new_job_path %> <br><br>
+  <%= link_to "Job posted", jobs_path%><br><br>
+  <%= link_to "Job Apply by Applicant"%><br><br>
+
+<%else current_user.applicant?%>
+<%= link_to "Apply Jobs", jobs_path%> <br><br>
+<%end%>
+<p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>

@@ -52,6 +52,9 @@ class JobsController < ApplicationController
     end
   end
 
+  def home 
+  end
+
   private
 
   def find_job

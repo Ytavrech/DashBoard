@@ -1,25 +1,32 @@
 class ApplicantsController < ApplicationController
   def index
     @applicants = Applicant.all  
-    # render :controller => 'jobs', :action => 'index'
   end
 
-  def new
-    @applicant = Applicant.new
-  end
+  # def new
+  #   @applicant = Applicant.new
+  # end
 
   def create 
-    @Applicant = Applicant.find(params[:applicant_id])    
-    @job = @applicant.jobs.create(params[:job]) 
+    # binding.pry
+    
+    # debugger
+    @job = Applicant.find(params[:applicant_id]);
+    @applicant = @job.applicants.create(applicant_params) 
+    redirect_to job_path(@job)
 
     # @applicant = Applicant.new(params.require(:applicant).permit(:name, :lastname, :city ,:phone))
+    # if @applicant.save
+    #   redirect_to @applicant
+    # else
+    #   render :new
+    # end
 
-    if @job.save
-      redirect_to root_path
-    else
-      render "new"
-    end
   end
-
+  
+  private
+  def applicant_params
+    params.require(:applicant).permit(:name, :lastname, :city, :phone)
+  end
 
 end

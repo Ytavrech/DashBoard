@@ -15,15 +15,17 @@ devise_for :users#, class_name: 'Blast::User', module: :devise
   # get 'welcome/index'
   # match ‘/send_mail’, to: 'welcome#send_mail', via: “get”
   # devise_for :users, controllers: { sessions: 'users/sessions' }
-
-
+  
+  resources :home
   resources :jobs do
+    resources :applicants
+    # get :form
+    get :home
     patch :accept
     patch :decline
   end
-  resources :applicants
 
- 
+
   root 'welcome#index'
   # resources jobs
 
