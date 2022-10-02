@@ -1,6 +1,7 @@
 class ApplicantsController < ApplicationController
   def index
     @applicants = Applicant.all  
+    @jobs = Job.all  
   end
 
   # def new
@@ -11,7 +12,7 @@ class ApplicantsController < ApplicationController
     # binding.pry
     
     # debugger
-    @job = Applicant.find(params[:applicant_id]);
+    @job = Job.find(params[:job_id])
     @applicant = @job.applicants.create(applicant_params) 
     redirect_to job_path(@job)
 

@@ -14,9 +14,10 @@
 
   <% @jobs.each do |job| %>
      <p><%= link_to job.title, job %><p>
-  <% end %>
+     <% end %>
 
-<br><h3><%= link_to "All the Applicant Apply By Jobs"%></h3>
+
+<br><h3><%= link_to "All the Applicant Apply By Jobs", job_applicants_path(@applicants)%></h3>
 
 <% end%>
 <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>

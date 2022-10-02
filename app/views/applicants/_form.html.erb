@@ -1,5 +1,6 @@
 <h2>Contact Details</h2>
-<%= form_with model: [ @job, @job.applicants.build ], url: "applicants" do |form| %>
+
+<%= form_with model: [ @job, @job.applicants.build ] do |form| %>
  <div>
     <%= form.label 'Name' %><br>
     <%= form.text_field :name %>

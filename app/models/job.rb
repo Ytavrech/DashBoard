@@ -1,5 +1,5 @@
 class Job < ApplicationRecord  
-    # has_many :applicants
+    has_many :applicants
 
     validates :title, presence: true
     validates :company, presence: true
