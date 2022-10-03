@@ -1,23 +1,21 @@
-<%# employer %>
 <% if current_user.employer? %>
   <h1>Welcome Employer</h1>
    <% @jobs.each do |job| %>
 
-     <p> <%=link_to job.company, job %> </p>
-  <% end %>
+     <h1><p> <%=link_to job.company, job %> </p></h1>
+     <%#debugger%>
+    <% end %>
 
-  
-<%# applicant %>
 <% else current_user.applicant? %>
-  <h1>Welcome applicant</h1>
-  <h3>check job post</h3>
+<div>  
+  <h3>Applied Jobs</h3>
 
   <% @jobs.each do |job| %>
      <p><%= link_to job.title, job %><p>
-     <% end %>
-
-
-<br><h3><%= link_to "All the Applicant Apply By Jobs", job_applicants_path(@applicants)%></h3>
-
+  <% end %>
+ 
+</div>
 <% end%>
 <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
+
+<%# render 'jobs/jobpost' %>

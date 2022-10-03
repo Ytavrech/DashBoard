@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-if Rails.env.development?
-mount LetterOpenerWeb::Engine, at: "/letter_opener"
-end
+  if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   # namespace :admin do
   #     resources :roles
   #     resources :jobs
@@ -9,7 +10,10 @@ end
 
   #     root to: "roles#index"
   #   end
-devise_for :users#, class_name: 'Blast::User', module: :devise
+ devise_for :users do
+  get '/users/sign_out' => 'devise/sessions#destroy'
+ end
+ #, class_name: 'Blast::User', module: :devise
 # devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
   # get 'welcome/index'
@@ -19,7 +23,7 @@ devise_for :users#, class_name: 'Blast::User', module: :devise
   resources :home
   resources :jobs do
     resources :applicants
-    # get :form
+    get :jobpost
     get :home
     patch :accept
     patch :decline

@@ -1,10 +1,11 @@
 class JobsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :find_job, only: %i{ accept decline }
+  # before_action :find_job, only: %i{ accept decline }
   
   def index
     @jobs = Job.all  
-    @applicants = Job.all
+    @user = current_user
+    @applicants = Applicant.all
   end
   
   def show
@@ -14,7 +15,7 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
   end
-
+  
   def create
     @job = Job.new(params.require(:job).permit(:title, :company,  :experience, :salary))
     if @job.save
@@ -27,36 +28,18 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
   end
-
+  
   def update
     @job = Job.find(params[:id])
     @job.update(title: params[:job][:title], company: params[:job][:company], url: params[:job][:url])
     redirect_to job_path(@job)
   end
-
-  def accept
-    # debugger
-    if @job.accepted!
-      redirect_to @job, notice: "Offer accepted"
-    else
-      redirect_to @job, notice: "Offer could not be accepted - please try again"
-    end
-  end
-
-  def decline
-    # debugger
-    if @job.rejected!
-      redirect_to @job, notice: "Offer rejected"
-    else
-      redirect_to @job, notice: "Offer could not be rejected - please try again"
-    end
-  end
-
+  
   def home 
   end
-
+  
   private
-
+  
   def find_job
     @job = Job.find(params[:job_id])
   end

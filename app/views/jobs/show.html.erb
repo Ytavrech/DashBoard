@@ -6,11 +6,18 @@
 <h4><p>Salary  : <%= @job.salary%></p></h4>
 </div>
 
-
+<div>
 <% if current_user.employer? %>
 <%= link_to "Job Edit", edit_job_path(@job)%><br><br>
+  <% @job.applicants.each do |applicant| %>
+         <p> <%=applicant.name %> 
+               <%=applicant.lastname %> </p>
+             <p> <%=applicant.city %> </p>
+                <p> <%=applicant.phone %> </p>
+                
+      <% end %>
 <% else current_user.applicant? %>
-<%= link_to "Apply job" %>
-<h2>Applicant Apply Job</h2>
+<h2>Apply Job</h2>
 <%= render 'applicants/form' %>
 <%end%>
+<div>

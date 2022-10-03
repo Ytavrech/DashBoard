@@ -1,12 +1,14 @@
+</div>
 <h1>Jobs</h1>
 
 <% @applicants.each do |applicant| %>
-  <h3><%= link_to applicant.name, applicant.lastname%></h3>
+  
+  <h3><%= applicant.name%></h3>
   
   <h3><%= applicant.city %></h3>
   <h3><%= applicant.phone %></h3>
-  </div>
+  
   <% end %>
-
+</div>
 
 

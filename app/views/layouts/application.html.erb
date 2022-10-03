@@ -1,20 +1,98 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dashboard</title>
+    <style>
+      h1 {text-align: center;}
+      p {text-align: center;}
+      div {text-align: center;}
+    </style>
+    <title>Demoproject</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    
+    <link rel="stylesheet" href="./application.scss" >
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+  <nav class="navbar navbar-light bg-light">
+  
+ 
+  <a class="btn btn-outline-primary" >
+    <h1><B>Job Portal</B></h1>
+    </a>
 
 
+<% if current_user.present? %>
+  <form class="form-inline">
+  <% if current_user.employer? %>
+    <div style="padding-left: 10px;">
+      <a class="btn btn-outline-primary" href="/home" role="button">
+      Home
+      </a>
+      <a class="btn btn-outline-primary" href="/jobs/new" role="button">
+      Add Job
+      </a>
+
+      <a class="btn btn-outline-primary" href="/jobs" role="button">
+      My Job
+      </a>
+
+      <a class="btn btn-outline-primary" href="/jobs/:job_id/jobpost" role="button">
+      Applicants Applied
+      </a>
+    </div>
+    <div style="padding-left: 10px;">
+      <%= link_to "Signs Out", destroy_user_session_path, method: :delete %>
+    </div>
+
+  <% elsif current_user.applicant?%>
+
+ <div style="padding-left: 10px;">
+      <a class="btn btn-outline-primary" href="/home" role="button">
+      Home
+      </a>
+      <a class="btn btn-outline-primary" href="/jobs/:job_id/applicants" role="button">
+      All Applicant
+      </a>
+
+      <a class="btn btn-outline-primary" href="/jobs" role="button">
+      Job Apply
+      </a>
+
+    </div>
+
+    <div style="padding-left: 10px;">
+      <a class="btn btn-outline-success" href="/users/sign_out"  role="button">
+      Logout
+      </a>
+    </div>
+  <%end%>
+    </form>
+  <% else %>
+  <form class="form-inline">
+    <a class="btn btn-outline-primary" href="/users/sign_in" role="button">
+    Login
+    </a>
+    <div style="padding-left: 10px;">
+      <a class="btn btn-outline-success" href="/users/sign_up" role="button">
+      Sign Up
+      </a>
+    </div>
+  </form>
+  <% end %>
+</nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
