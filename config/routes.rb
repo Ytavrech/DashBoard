@@ -22,13 +22,15 @@ Rails.application.routes.draw do
   
   resources :home
   resources :jobs do
-    resources :applicants
-    get :jobpost
-    get :home
-    patch :accept
-    patch :decline
+    resources :applicants do
+      get :jobpost
+      member do
+        patch :accept
+        patch :decline
+      end
+    end
   end
-
+  # get 'job/:id/jobpost', to: 'jobs#jobpost'
 
   root 'welcome#index'
   # resources jobs

@@ -2,11 +2,8 @@
 
   <h1>Welcome Employer<h1>
   
-  <%= link_to "Job Apply by Applicant"%><br><br>
-
 <%else current_user.applicant?%>
 
   <h1>Welcome Applicant<h1>
   
 <%end%>
-<p><%= link_to "Sign out", destroy_user_session_path %></p>

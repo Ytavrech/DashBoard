@@ -1,0 +1,12 @@
+<div>
+<% if current_user.employer? %>
+  <h1><p><%= @job.company %></h1>
+  <% @job.applicants.each do |applicant_data| %>
+    <p><%= applicant_data.name %> <%= applicant_data.lastname %></p>
+    <p> <%= applicant_data.city %></p>
+    <p> <%= applicant_data.phone %> </p>
+      <%= button_to "Accept", accept_job_applicant_path(@job, applicant_data.id), method: :patch%> 
+      <%= button_to "Reject", decline_job_applicant_path(@job, applicant_data.id), method: :patch%> 
+  <% end %>
+<% end %>
+</div>

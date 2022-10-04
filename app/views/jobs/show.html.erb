@@ -7,17 +7,12 @@
 </div>
 
 <div>
-<% if current_user.employer? %>
-<%= link_to "Job Edit", edit_job_path(@job)%><br><br>
-  <% @job.applicants.each do |applicant| %>
-         <p> <%=applicant.name %> 
-               <%=applicant.lastname %> </p>
-             <p> <%=applicant.city %> </p>
-                <p> <%=applicant.phone %> </p>
-                
-      <% end %>
-<% else current_user.applicant? %>
-<h2>Apply Job</h2>
-<%= render 'applicants/form' %>
-<%end%>
-<div>
+   <% if current_user.employer? %>
+      <%= link_to "Job Edit", edit_job_path(@job)%><br><br>
+
+      <%= link_to "Applicants for this job", job_applicant_jobpost_path(@job ,@job.applicants) %>             
+   <% else current_user.applicant? %>
+      <h2>Apply Job</h2>
+      <%= render 'applicants/form' %>
+   <%end%>
+</div>

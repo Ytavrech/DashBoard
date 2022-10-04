@@ -1,10 +1,6 @@
 class JobsController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :find_job, only: %i{ accept decline }
-  
   def index
-    @jobs = Job.all  
-    @user = current_user
+    @jobs = Job.all
     @applicants = Applicant.all
   end
   
@@ -36,6 +32,11 @@ class JobsController < ApplicationController
   end
   
   def home 
+  end
+
+  def jobpost
+    @job = Job.find(params[:job_id])
+    # @applicant=@job.applicants.find(params[:id])
   end
   
   private
