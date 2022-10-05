@@ -1,6 +1,6 @@
 <% if current_user.employer? %>
   <h1>Welcome Employer</h1>
-   <% @jobs.each do |job| %>
+   <% @jobss.each do |job| %>
 
      <h1><p> <%=link_to job.company, job %> </p></h1>
      <%#debugger%>
@@ -8,14 +8,14 @@
 
 <% else current_user.applicant? %>
 <div>  
-  <h3>Applied Jobs</h3>
+  <h3>Jobs</h3>
 
   <% @jobs.each do |job| %>
-     <p><%= link_to job.title, job %><p>
+     <p><%= link_to job.company, job %><p>
   <% end %>
- 
+
 </div>
-<% end%>
+<% end %>
 <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
 
 <%# render 'jobs/jobpost' %>

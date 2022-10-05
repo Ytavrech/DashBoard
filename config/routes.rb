@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   
   resources :home
   resources :jobs do
+    get :allapplicant
     resources :applicants do
-      get :jobpost
+      get :jobapplicant
       member do
         patch :accept
         patch :decline

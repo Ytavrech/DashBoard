@@ -31,10 +31,10 @@
     <h1><B>Job Portal</B></h1>
     </a>
 
-
 <% if current_user.present? %>
   <form class="form-inline">
   <% if current_user.employer? %>
+
     <div style="padding-left: 10px;">
       <a class="btn btn-outline-primary" href="/home" role="button">
       Home
@@ -49,17 +49,18 @@
 
     </div>
     <div style="padding-left: 10px;">
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+      <a class="btn btn-outline-success" href="/users/sign_out"  role="button">
+      Logout
+      </a>
     </div>
 
   <% elsif current_user.applicant?%>
-
  <div style="padding-left: 10px;">
       <a class="btn btn-outline-primary" href="/home" role="button">
       Home
       </a>
       <a class="btn btn-outline-primary" href="/jobs/:job_id/applicants" role="button">
-      All Applicant
+      My Profile
       </a>
 
       <a class="btn btn-outline-primary" href="/jobs" role="button">
@@ -88,6 +89,7 @@
   </form>
   <% end %>
 </nav>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

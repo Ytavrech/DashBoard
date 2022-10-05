@@ -6,6 +6,12 @@
   </div>
 
   <div>
+    <%= form.label "Lastname" %><br>
+    <%= form.text_field :lastname %>
+    
+  </div>
+  
+  <div>
     <%= form.label "City" %><br>
     <%= form.text_field :city %>
    
@@ -14,14 +20,11 @@
   <div>
     <%= form.label "phone" %><br>
     <%= form.text_field :phone %>
-   
+
+
   </div>
 
-    <div>
-    <%= form.label "Lastname" %><br>
-    <%= form.text_field :lastname %>
-    
-  </div><br><br>
+  <br><br>
   <div>
     <%= form.submit %>
   </div>

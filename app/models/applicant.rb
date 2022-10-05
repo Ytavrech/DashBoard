@@ -1,5 +1,7 @@
 class Applicant < ApplicationRecord
     belongs_to :job
+    belongs_to :user
+    
     validates :name, presence: true
     validates :lastname, presence: true
     validates :city , presence: true

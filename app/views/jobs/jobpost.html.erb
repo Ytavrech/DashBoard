@@ -1,8 +1,0 @@
-<% if current_user.employer? %>
-  <h1><p><%= @job.company %></h1>
-  <% @job.applicants.each do |applicant_data| %>
-    <p><%= applicant_data.name %> <%= applicant_data.lastname %> </p>
-    <p> <%= applicant_data.city %></p>
-    <p> <%= applicant_data.phone %> </p>     
-  <% end %>
-<% end %> 
