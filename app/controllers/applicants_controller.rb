@@ -6,9 +6,15 @@ class ApplicantsController < ApplicationController
     @applicants = Applicant.all
     @applicantss = curent_user.applicants.all
   end
-
+  # Applicant.last.job.user
+  # Applicant.last.job
   def create 
+    # @user = User.find(params[:id])
+    # @job_check =   @applicants.Job.find(params[:job_id])
     @applicant = @job.applicants.create(applicant_params) 
+    @job_check1 = @job.find(params[:id])
+
+    ApplicantMailer.with(user: current_user, job: @job_check1).new_applicant_email.deliver
     redirect_to jobs_path(@job)
   end
 
@@ -19,6 +25,7 @@ class ApplicantsController < ApplicationController
 
   def accept
     if @applicant.accepted!
+      
       redirect_to job_path(@applicant), notice: "Offer accepted"
     else
       redirect_to job_path(@applicant), notice: "Offer could not be accepted - please try again"
