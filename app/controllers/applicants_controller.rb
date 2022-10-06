@@ -1,15 +1,15 @@
 class ApplicantsController < ApplicationController
   before_action :find_applicant, only: %i{ accept decline }
+  before_action :find_job, only: %i{ create }
 
   def index
     @applicants = Applicant.all
-    @applicant = current_user.applicant
+    @applicantss = curent_user.applicants.all
   end
 
   def create 
-    @job = Job.find(params[:job_id])
     @applicant = @job.applicants.create(applicant_params) 
-    redirect_to job_path(@job)
+    redirect_to jobs_path(@job)
   end
 
   def show
@@ -43,6 +43,9 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.find(params[:id])
   end
 
+  def find_job
+    @job = Job.find(params[:job_id])
+  end
 
   def applicant_params
     params.require(:applicant).permit(:name, :lastname, :city, :phone)
