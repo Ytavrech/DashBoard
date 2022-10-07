@@ -1,7 +1,5 @@
-
+<% if current_user.employer? %>
 <h1>create new job</h1>
-
-
 <%= form_with model: @job do |form| %>
   <div>
     <%= form.label :title %><br>
@@ -34,5 +32,9 @@
 
     <%= form.submit %>
   </div>
+<%end%>
 
+<% else current_user.applicant? %>
+<h2>Applicant Apply Job</h2>
+<%= render 'applicants/form' %>
 <% end %>

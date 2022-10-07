@@ -1,25 +1,57 @@
 class ApplicantsController < ApplicationController
+  before_action :find_applicant, only: %i{ accept decline }
+  before_action :find_job, only: %i{ create }
+
   def index
-    @applicants = Applicant.all  
-    # render :controller => 'jobs', :action => 'index'
+    @applicants = Applicant.all
+    @applicantss = curent_user.applicants.all
+  end
+  # Applicant.last.job.user
+  # Applicant.last.job
+  def create
+    @applicant = @job.applicants.create(applicant_params) 
+
+    ApplicantMailer.with(user: current_user, job: @applicant.job.user).new_applicant_email.deliver
+    redirect_to jobs_path(@job)
   end
 
-  def new
-    @applicant = Applicant.new
+  def show
+    @job = Job.find(params[:job_id])
+    @applicant = @job.applicant
   end
 
-  def create 
-    @Applicant = Applicant.find(params[:applicant_id])    
-    @job = @applicant.jobs.create(params[:job]) 
-
-    # @applicant = Applicant.new(params.require(:applicant).permit(:name, :lastname, :city ,:phone))
-
-    if @job.save
-      redirect_to root_path
+  def accept
+    if @applicant.accepted!
+      
+      redirect_to job_path(@applicant), notice: "Offer accepted"
     else
-      render "new"
+      redirect_to job_path(@applicant), notice: "Offer could not be accepted - please try again"
+    end
+  end
+  
+  def decline
+    # debugger
+    if @applicant.rejected!
+      redirect_to job_path(@applicant), notice: "Offer rejected"
+    else
+      redirect_to job_path(@applicant), notice: "Offer could not be rejected - please try again"
     end
   end
 
+  def jobapplicant
+    @job = Job.find(params[:job_id])
+  end
 
+  private
+  def find_applicant
+    @applicant = Applicant.find(params[:id])
+  end
+
+  def find_job
+    @job = Job.find(params[:job_id])
+  end
+
+  def applicant_params
+    params.require(:applicant).permit(:name, :lastname, :city, :phone)
+  end
 end

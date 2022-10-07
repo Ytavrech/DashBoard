@@ -1,3 +1,4 @@
+<h1>see the job post</h1>
 <div>
 <h4><p>TITLE      : <%= @job.title %></p></h4>
 <h4><p>COMPANY : <%= @job.company %></p></h4>
@@ -6,12 +7,7 @@
 </div>
 
 <div>
-   <% if current_user.employer? %>
-      <%= link_to "Job Edit", edit_job_path(@job)%><br><br>
-
+   <% if current_user.applicant? %>
       <%= link_to "Applicants for this job", job_applicant_jobapplicant_path(@job ,@job.applicants) %>             
-   <% else current_user.applicant? %>
-      <h2>Apply Job</h2>
-      <%= render 'applicants/form' %>
    <%end%>
 </div>
