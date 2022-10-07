@@ -4,16 +4,16 @@ class ApplicantsController < ApplicationController
   # before_action :assign_user, only: %i{create}
 
   def index
-    @curent_user = curent_user.id
+    # @curent_user = curent_user.id
     @applicants = Applicant.all
-    @applicantss = @curent_user.applicants.all
+    # @applicantss = @curent_user.applicants.all
   end
   # Applicant.last.job.user
   # Applicant.last.job
   def create
     # debugger
 
-    @applicant = @job.current_user.applicants.create(applicant_params) 
+    @applicant = @job.applicants.create(applicant_params) 
 
     ApplicantMailer.with(user: current_user, job: @applicant.job.user, applicant: @applicant).new_applicant_email.deliver
     redirect_to jobs_path(@job)
@@ -26,7 +26,7 @@ class ApplicantsController < ApplicationController
 
   def accept
     if @applicant.accepted!
-      debugger
+      # debugger
       ApplicantMailer.with(user: current_user, job: @applicant.job.user, applicant: @applicant, applicant_id: @job.applicants.user).new_applicant_email.deliver
 
       redirect_to job_path(@applicant), notice: "Offer accepted"
@@ -54,10 +54,6 @@ class ApplicantsController < ApplicationController
   def find_applicant
     @applicant = Applicant.find(params[:id])
   end
-
-  # def assign_user
-  #   self.user_id = curent_user.id
-  # end
 
   def find_job
     @job = Job.find(params[:job_id])

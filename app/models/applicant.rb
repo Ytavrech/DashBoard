@@ -1,10 +1,17 @@
 class Applicant < ApplicationRecord
     belongs_to :job
-    belongs_to :user
+    # belongs_to :user
     # validates :name, presence: true
     # validates :lastname, presence: true
     # validates :city , presence: true
     # validates :phone, presence: true, uniqueness: true, length: { is: 10 }
+
+    before_save :assign_user
+
+    def assign_user
+      debugger
+      self.user_id = curent_user.id
+    end
 
     enum status: {
         pending: 0,
