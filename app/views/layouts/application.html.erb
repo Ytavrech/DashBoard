@@ -55,6 +55,7 @@
     </div>
 
   <% elsif current_user.applicant?%>
+  <%= current_user.role%>
  <div style="padding-left: 10px;">
       <a class="btn btn-outline-primary" href="/home" role="button">
       Home
@@ -86,7 +87,6 @@
   </form>
   <% end %>
 </nav>
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

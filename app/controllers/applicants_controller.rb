@@ -8,13 +8,10 @@ class ApplicantsController < ApplicationController
   end
   # Applicant.last.job.user
   # Applicant.last.job
-  def create 
-    # @user = User.find(params[:id])
-    # @job_check =   @applicants.Job.find(params[:job_id])
+  def create
     @applicant = @job.applicants.create(applicant_params) 
-    @job_check1 = @job.find(params[:id])
 
-    ApplicantMailer.with(user: current_user, job: @job_check1).new_applicant_email.deliver
+    ApplicantMailer.with(user: current_user, job: @applicant.job.user).new_applicant_email.deliver
     redirect_to jobs_path(@job)
   end
 

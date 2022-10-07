@@ -5,5 +5,5 @@ class ApplicantMailer < ApplicationMailer
 
         mail from: @user.email 
         mail to: @job.email
-      end
+    end
 end

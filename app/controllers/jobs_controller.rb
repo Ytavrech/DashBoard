@@ -4,14 +4,14 @@ class JobsController < ApplicationController
     @jobss= current_user.jobs.all
   end
   
-  def new
-    @job = Job.new
-  end
-  
   def show
     @job = Job.find(params[:id])
   end
-  
+ 
+  def new
+    @job = Job.new
+  end
+   
   def create
     @job = current_user.jobs.new(job_params)
     if @job.save
