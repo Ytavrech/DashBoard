@@ -10,22 +10,21 @@ development:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  username: yash1234
-  password: 12345
+  username: harry
+  password: harry123
   host: localhost
   database: Dashboard_development
 
 
 test:
   <<: *default
+  adapter: postgresql
   encoding: unicode
-  username: yash1234
-  password: 12345
+  username: harry
+  password: harry123
   database: Dashboard_test
 
 
 production:
   <<: *default
   database: DashBoard_production
-  username: Dashboard
-  password: <%= ENV["DASHBOARD_DATABASE_PASSWORD"] %>

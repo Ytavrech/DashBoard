@@ -19,18 +19,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_095514) do
     t.string "lastname"
     t.string "city"
     t.string "phone"
+    t.bigint "job_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "job_id"
-    t.integer "status", default: 0
     t.bigint "user_id"
+    t.index ["job_id"], name: "index_applicants_on_job_id"
     t.index ["user_id"], name: "index_applicants_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.string "company"
-    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "experience"
@@ -80,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_095514) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "applicants", "jobs"
   add_foreign_key "applicants", "users"
   add_foreign_key "jobs", "users"
 end

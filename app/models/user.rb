@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :jobs
+  has_many :applicants
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
