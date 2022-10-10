@@ -34,7 +34,6 @@
 <% if current_user.present? %>
   <form class="form-inline">
   <% if current_user.employer? %>
-
     <div style="padding-left: 10px;">
       <a class="btn btn-outline-primary" href="/home" role="button">
       Home
@@ -55,7 +54,7 @@
     </div>
 
   <% elsif current_user.applicant?%>
-  <%= current_user.role%>
+
  <div style="padding-left: 10px;">
       <a class="btn btn-outline-primary" href="/home" role="button">
       Home

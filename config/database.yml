@@ -22,10 +22,11 @@ test:
   username: yash1234
   password: 12345
   database: Dashboard_test
+  host: localhost
 
 
 production:
   <<: *default
   database: DashBoard_production
-  username: Dashboard
-  password: <%= ENV["DASHBOARD_DATABASE_PASSWORD"] %>
+  username: yash1234
+  password: 12345

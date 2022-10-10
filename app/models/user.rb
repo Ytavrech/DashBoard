@@ -7,6 +7,9 @@ class User < ApplicationRecord
   enum role: [:employer, :applicant]
   after_initialize :set_default_role, :if => :new_record?
   
+  validates :email , presence: true
+  validates :password , presence: true
+
   private
   def set_default_role
     self.role ||= :employer

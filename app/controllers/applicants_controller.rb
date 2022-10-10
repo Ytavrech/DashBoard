@@ -4,25 +4,24 @@ class ApplicantsController < ApplicationController
 
   def index
     @applicants = Applicant.all
-    @applicantss = curent_user.applicants.all
   end
-  # Applicant.last.job.user
-  # Applicant.last.job
+
   def create
     @applicant = @job.applicants.create(applicant_params) 
-
-    ApplicantMailer.with(user: current_user, job: @applicant.job.user).new_applicant_email.deliver
+    ApplicantMailer.with(user: current_user, job: @applicant.job.user, applicant: @applicant).new_applicant_email.deliver
     redirect_to jobs_path(@job)
   end
 
   def show
-    @job = Job.find(params[:job_id])
-    @applicant = @job.applicant
+    # debugger
+    @applicant = Applicant.find(params[:id])
   end
 
   def accept
+    # debugger
     if @applicant.accepted!
-      
+      # ApplicantMailer.with(applicant_id: @job.applicant, job: @applicant.job.user, applicant: @applicant).new_applicant_email.deliver
+
       redirect_to job_path(@applicant), notice: "Offer accepted"
     else
       redirect_to job_path(@applicant), notice: "Offer could not be accepted - please try again"
@@ -31,6 +30,8 @@ class ApplicantsController < ApplicationController
   
   def decline
     # debugger
+    # ApplicantMailer.with(user: current_user, applicant_id: @applicant.job, job: @applicant.job.user, applicant: @applicant).new_applicant_email.deliver
+
     if @applicant.rejected!
       redirect_to job_path(@applicant), notice: "Offer rejected"
     else

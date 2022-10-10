@@ -30,12 +30,6 @@ class JobsController < ApplicationController
     @job.update(job_params)
     redirect_to jobs_path(@job)
   end
-  
-  def destroy
-    @job = Job.find(params[:id])
-    @job.destroy
-    redirect_to jobs_path
-  end
 
   private
   def find_job
