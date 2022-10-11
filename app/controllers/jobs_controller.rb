@@ -1,7 +1,9 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.all
-    @jobss= current_user.jobs.all
+    
+      @jobs = Job.all
+      # @jobss= current_user.jobs.all
+    
   end
   
   def show

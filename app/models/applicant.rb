@@ -6,12 +6,12 @@ class Applicant < ApplicationRecord
     # validates :city , presence: true
     # validates :phone, presence: true, uniqueness: true, length: { is: 10 }
 
-    before_save :assign_user
+    # before_save :assign_user
 
-    def assign_user
-      debugger
-      self.user_id = curent_user.id
-    end
+    # def assign_user
+    #   # debugger
+    #   self.user_id = curent_user.id
+    # end
 
     enum status: {
         pending: 0,
